@@ -4,14 +4,16 @@ import re
 from pypdf import PdfReader
 
 
+ROOT = Path(__file__).resolve().parents[1]
 PATHS = [
-    "/Users/thomas/Downloads/S24-3500U20-1.pdf",
-    "/Users/thomas/Downloads/S24-3500U20-1-ms.pdf",
-    "/Users/thomas/Downloads/s23-3500u20-1.pdf",
-    "/Users/thomas/Downloads/s23-3500u20-1-ms.pdf",
-    "/Users/thomas/Downloads/s22-3500U20-1-ms.pdf",
-    "/Users/thomas/Downloads/s19-3500-02.pdf",
-    "/Users/thomas/Downloads/s19-3500u20-1 wjec gcse comp sci. - unit 2 ms s-ms.pdf",
+    ROOT / "source_materials/wjec-unit2/S24-3500U20-1.pdf",
+    ROOT / "source_materials/wjec-unit2/S24-3500U20-1-ms.pdf",
+    ROOT / "source_materials/wjec-unit2/s23-3500u20-1.pdf",
+    ROOT / "source_materials/wjec-unit2/s23-3500u20-1-ms.pdf",
+    ROOT / "source_materials/wjec-unit2/z22-3500-02.pdf",
+    ROOT / "source_materials/wjec-unit2/s22-3500U20-1-ms.pdf",
+    ROOT / "source_materials/wjec-unit2/s19-3500-02.pdf",
+    ROOT / "source_materials/wjec-unit2/s19-3500u20-1 wjec gcse comp sci. - unit 2 ms s-ms.pdf",
 ]
 
 PATTERN = re.compile(
@@ -22,8 +24,8 @@ PATTERN = re.compile(
 
 def main():
     for path in PATHS:
-        print(f"### {Path(path).name}")
-        if not Path(path).exists():
+        print(f"### {path.name}")
+        if not path.exists():
             print("missing")
             continue
         reader = PdfReader(path)

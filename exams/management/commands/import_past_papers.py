@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.utils.text import slugify
 
@@ -78,7 +79,13 @@ class Command(BaseCommand):
         paths = []
         for paper in PAPERS:
             paths.extend([paper["source_pdf_path"], paper["mark_scheme_pdf_path"]])
-        return [path for path in paths if path and not Path(path).exists()]
+        return [str(self.resource_path(path)) for path in paths if path and not self.resource_path(path).exists()]
+
+    def resource_path(self, path):
+        resource_path = Path(path)
+        if not resource_path.is_absolute():
+            resource_path = settings.BASE_DIR / resource_path
+        return resource_path
 
     def examiner_note(self, pattern):
         notes = {

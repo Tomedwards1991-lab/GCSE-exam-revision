@@ -2,14 +2,14 @@
 
 Current authoritative Unit 2 papers and mark schemes supplied for analysis:
 
-- `/Users/thomas/Desktop/S24-3500U20-1.pdf`
-- `/Users/thomas/Desktop/S24-3500U20-1-ms.pdf`
-- `/Users/thomas/Desktop/s23-3500u20-1.pdf`
-- `/Users/thomas/Desktop/s23-3500u20-1-ms.pdf`
-- `/Users/thomas/Desktop/z22-3500-02.pdf`
-- `/Users/thomas/Desktop/s22-3500U20-1-ms.pdf`
-- `/Users/thomas/Desktop/s19-3500-02.pdf`
-- `/Users/thomas/Desktop/s19-3500u20-1 wjec gcse comp sci. - unit 2 ms s-ms.pdf`
+- `source_materials/wjec-unit2/S24-3500U20-1.pdf`
+- `source_materials/wjec-unit2/S24-3500U20-1-ms.pdf`
+- `source_materials/wjec-unit2/s23-3500u20-1.pdf`
+- `source_materials/wjec-unit2/s23-3500u20-1-ms.pdf`
+- `source_materials/wjec-unit2/z22-3500-02.pdf`
+- `source_materials/wjec-unit2/s22-3500U20-1-ms.pdf`
+- `source_materials/wjec-unit2/s19-3500-02.pdf`
+- `source_materials/wjec-unit2/s19-3500u20-1 wjec gcse comp sci. - unit 2 ms s-ms.pdf`
 
 Extraction notes:
 

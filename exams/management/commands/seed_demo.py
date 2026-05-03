@@ -39,8 +39,8 @@ class Command(BaseCommand):
             code="3500U20-1",
             defaults={
                 "title": "GCSE Computer Science Unit 2",
-                "source_pdf_path": "/Users/thomas/Downloads/S24-3500U20-1.pdf",
-                "mark_scheme_pdf_path": "/Users/thomas/Downloads/S24-3500U20-1-ms.pdf",
+                "source_pdf_path": "source_materials/wjec-unit2/S24-3500U20-1.pdf",
+                "mark_scheme_pdf_path": "source_materials/wjec-unit2/S24-3500U20-1-ms.pdf",
             },
         )
 

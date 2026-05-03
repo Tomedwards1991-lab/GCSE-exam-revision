@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Teacher Dashboard" %}{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+    <div>
+      <h1 class="h2 mb-1">{% trans "Teacher dashboard" %}</h1>
+      <p class="text-secondary mb-0">{% trans "Assigned students, attempts, and improvement signals." %}</p>
+    </div>
+  </div>
+  <div class="metric-row mb-4">
+    <div><span>{% trans "Assigned students" %}</span><strong>{{ students|length }}</strong></div>
+    <div><span>{% trans "Average self score" %}</span><strong>{% if average_self_score %}{{ average_self_score|floatformat:0 }}%{% else %}-{% endif %}</strong></div>
+  </div>
+  <div class="row g-4">
+    <section class="col-lg-7">
+      <h2 class="h5">{% trans "Students" %}</h2>
+      <div class="list-group">
+        {% for student in students %}
+          <a class="list-group-item list-group-item-action" href="{% url 'student_detail' student.pk %}">
+            <div class="d-flex justify-content-between gap-3">
+              <span>{{ student.get_full_name|default:student.username }}</span>
+              <span>{{ student.attempt_total }} {% trans "attempts" %}</span>
+            </div>
+            <small class="text-secondary">{{ student.marks_awarded|default:0 }}/{{ student.marks_available|default:0 }} {% trans "estimated marks" %}</small>
+          </a>
+        {% empty %}
+          <div class="empty-state">{% trans "No students assigned yet." %}</div>
+        {% endfor %}
+      </div>
+    </section>
+    <aside class="col-lg-5">
+      <h2 class="h5">{% trans "Recent attempts" %}</h2>
+      <div class="list-group">
+        {% for attempt in recent_attempts %}
+          <a class="list-group-item list-group-item-action" href="{% url 'student_detail' attempt.user.pk %}">
+            <div class="d-flex justify-content-between gap-3">
+              <span>{{ attempt.user.get_full_name|default:attempt.user.username }}</span>
+              <span>{{ attempt.auto_awarded_marks }}/{{ attempt.question.marks }}</span>
+            </div>
+            <small class="text-secondary">{{ attempt.question.reference|default:attempt.question }}</small>
+          </a>
+        {% empty %}
+          <div class="empty-state">{% trans "No attempts yet." %}</div>
+        {% endfor %}
+      </div>
+    </aside>
+  </div>
+</div>
+{% endblock %}

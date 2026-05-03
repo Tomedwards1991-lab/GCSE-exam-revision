@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 320" role="img" aria-labelledby="title desc">
+  <title id="title">Marks become answer chunks</title>
+  <desc id="desc">A diagram showing marks split into short answer chunks.</desc>
+  <rect width="960" height="320" fill="#f7f9fb"/>
+  <text x="54" y="62" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#172033">Use the marks as a checklist</text>
+  <g font-family="Arial, sans-serif">
+    <rect x="60" y="104" width="180" height="116" rx="8" fill="#ffffff" stroke="#dce3eb" stroke-width="3"/>
+    <text x="92" y="150" font-size="42" font-weight="700" fill="#2454a6">4</text>
+    <text x="142" y="150" font-size="22" fill="#172033">marks</text>
+    <text x="92" y="184" font-size="16" fill="#657086">means four chances</text>
+    <path d="M252 162h92" stroke="#657086" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="372" y="96" width="118" height="132" rx="8" fill="#e9f2ff" stroke="#cfe0ff" stroke-width="2"/>
+    <rect x="508" y="96" width="118" height="132" rx="8" fill="#f5fbf8" stroke="#b7ddd2" stroke-width="2"/>
+    <rect x="644" y="96" width="118" height="132" rx="8" fill="#fff9e8" stroke="#ead89d" stroke-width="2"/>
+    <rect x="780" y="96" width="118" height="132" rx="8" fill="#f8f6ff" stroke="#d6cdf6" stroke-width="2"/>
+    <text x="410" y="146" font-size="24" font-weight="700" fill="#172033">1</text>
+    <text x="536" y="146" font-size="24" font-weight="700" fill="#172033">2</text>
+    <text x="680" y="146" font-size="24" font-weight="700" fill="#172033">3</text>
+    <text x="816" y="146" font-size="24" font-weight="700" fill="#172033">4</text>
+    <text x="394" y="184" font-size="15" fill="#657086">point</text>
+    <text x="526" y="184" font-size="15" fill="#657086">detail</text>
+    <text x="666" y="184" font-size="15" fill="#657086">example</text>
+    <text x="806" y="184" font-size="15" fill="#657086">scenario</text>
+  </g>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0 0 L8 3 L0 6 Z" fill="#657086"/>
+    </marker>
+  </defs>
+</svg>

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% trans "Exam Guides" %}{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <h1 class="h2 mb-4">{% trans "Exam guide" %}</h1>
+  <div class="guide-list">
+    {% for article in articles %}
+      <article>
+        {% if article.slug == "wjec-html-questions" %}
+          <img class="guide-thumb" src="{% static 'img/guides/html-pattern.svg' %}" alt="">
+        {% elif article.slug == "wjec-greenfoot-questions" %}
+          <img class="guide-thumb" src="{% static 'img/guides/greenfoot-pattern.svg' %}" alt="">
+        {% elif article.slug == "answering-mark-questions" %}
+          <img class="guide-thumb" src="{% static 'img/guides/marks-pattern.svg' %}" alt="">
+        {% elif article.slug == "command-words" %}
+          <img class="guide-thumb" src="{% static 'img/guides/command-words.svg' %}" alt="">
+        {% elif article.slug == "greenfoot-story-language" %}
+          <img class="guide-thumb" src="{% static 'img/guides/story-language.svg' %}" alt="">
+        {% elif article.slug == "model-answer-builder" %}
+          <img class="guide-thumb" src="{% static 'img/guides/model-answer-builder.svg' %}" alt="">
+        {% endif %}
+        <h2 class="h4"><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2>
+        <p class="text-secondary">{{ article.summary }}</p>
+      </article>
+    {% empty %}
+      <div class="empty-state">{% trans "No guide articles yet." %}</div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

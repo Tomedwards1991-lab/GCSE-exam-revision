@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Log in" %}{% endblock %}
+{% block content %}
+<div class="container py-4 auth-panel">
+  <div class="login-hero">
+    <span class="mini-badge">Revision unlocked</span>
+    <h1 class="h2 mb-2">{% trans "Log in" %}</h1>
+    <p class="text-secondary mb-0">Practise papers, generate new questions, and track your progress.</p>
+  </div>
+  <form method="post" class="exam-panel">
+    {% csrf_token %}
+    {% if form.errors %}
+      <div class="alert alert-danger">{% trans "Those login details were not recognised." %}</div>
+    {% endif %}
+    <div class="mb-3">
+      <label class="form-label" for="{{ form.username.id_for_label }}">{% trans "Username" %}</label>
+      <input class="form-control" type="text" name="{{ form.username.html_name }}" id="{{ form.username.id_for_label }}" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="{{ form.password.id_for_label }}">{% trans "Password" %}</label>
+      <input class="form-control" type="password" name="{{ form.password.html_name }}" id="{{ form.password.id_for_label }}" required>
+    </div>
+    <button class="btn btn-primary" type="submit">{% trans "Log in" %}</button>
+  </form>
+</div>
+{% endblock %}

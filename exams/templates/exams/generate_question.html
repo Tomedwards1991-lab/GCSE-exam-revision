@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Generate Question" %}{% endblock %}
+{% block content %}
+<div class="container py-4 narrow">
+  <h1 class="h2">{% trans "Generate a Unit 2 question" %}</h1>
+  <p class="text-secondary">{% trans "This first version uses a local generator. The service is ready to swap in an LLM-backed provider later." %}</p>
+  <form method="post" class="exam-panel">
+    {% csrf_token %}
+    <div class="mb-3">{{ form.pattern.label_tag }}{{ form.pattern }}</div>
+    <div class="mb-3">{{ form.topic.label_tag }}{{ form.topic }}</div>
+    <div class="row">
+      <div class="col-sm-6 mb-3">{{ form.marks.label_tag }}{{ form.marks }}</div>
+      <div class="col-sm-6 mb-3">{{ form.difficulty.label_tag }}{{ form.difficulty }}</div>
+    </div>
+    <button class="btn btn-primary" type="submit">{% trans "Generate" %}</button>
+  </form>
+</div>
+{% endblock %}

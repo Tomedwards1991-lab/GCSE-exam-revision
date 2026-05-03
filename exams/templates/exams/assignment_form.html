@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Assign Student" %}{% endblock %}
+{% block content %}
+<div class="container py-4 narrow">
+  <a href="{% url 'user_management' %}" class="text-decoration-none">&larr; {% trans "User management" %}</a>
+  <h1 class="h2 mt-3">{% trans "Assign student to teacher" %}</h1>
+  <form method="post" class="exam-panel">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="mb-3">{{ form.teacher.label_tag }}{{ form.teacher }}</div>
+    <div class="mb-3">{{ form.student.label_tag }}{{ form.student }}</div>
+    <div class="form-check mb-3">{{ form.is_active }} {{ form.is_active.label_tag }}</div>
+    <button class="btn btn-primary" type="submit">{% trans "Save assignment" %}</button>
+  </form>
+</div>
+{% endblock %}

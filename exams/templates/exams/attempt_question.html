@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Attempt Question" %}{% endblock %}
+{% block content %}
+<div class="container py-4 narrow">
+  <article class="exam-panel mb-4">
+    <div class="d-flex justify-content-between">
+      <span class="badge text-bg-light">{{ question.reference|default:"Practice question" }}</span>
+      <strong>{{ question.marks }} {% trans "marks" %}</strong>
+    </div>
+    <p class="question-prompt mt-3">{{ question.prompt }}</p>
+  </article>
+
+  {% if attempt %}
+    <section class="mb-4">
+      <h1 class="h4">{% trans "Your answer" %}</h1>
+      <div class="student-answer">{{ attempt.answer_text|linebreaks }}</div>
+      <div class="auto-mark-panel mt-3">
+        <div>
+          <span class="small text-secondary">{% trans "Estimated mark" %}</span>
+          <strong>{{ attempt.auto_awarded_marks }}/{{ question.marks }}</strong>
+        </div>
+        <p class="mb-0">{{ attempt.auto_feedback_summary }}</p>
+      </div>
+    </section>
+    <section class="mb-4">
+      <h2 class="h4">{% trans "Mark feedback" %}</h2>
+      <div class="feedback-list">
+        {% for point in attempt.feedback_points.all %}
+          <article class="feedback-point {% if point.awarded %}awarded{% else %}missed{% endif %}">
+            <div class="feedback-status">{% if point.awarded %}{% trans "Likely mark" %}{% else %}{% trans "Missing" %}{% endif %}</div>
+            <h3 class="h6">{{ point.label }}</h3>
+            {% if point.awarded %}
+              <p>{% trans "Detected evidence" %}: {{ point.evidence }}</p>
+            {% else %}
+              <p>{% trans "Add this" %}: {{ point.improvement }}</p>
+              <p class="text-secondary">{% trans "Where from" %}: {{ point.source_hint }}</p>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+    <section>
+      <h2 class="h4">{% trans "Model answer builder" %}</h2>
+      <div class="wizard">
+        {% for step in question.walkthrough_steps.all %}
+          <div class="wizard-step">
+            <div class="step-number">{{ forloop.counter }}</div>
+            <div>
+              <h3 class="h5">{{ step.title }}</h3>
+              <p>{{ step.body }}</p>
+              {% if step.write_this %}
+                <div class="walkthrough-callout write-this">
+                  <strong>{% trans "Write this exact part" %}</strong>
+                  <div>{{ step.write_this|linebreaks }}</div>
+                </div>
+              {% endif %}
+              {% if step.source_hint %}
+                <div class="walkthrough-callout source-hint">
+                  <strong>{% trans "Where you get this answer" %}</strong>
+                  <div>{{ step.source_hint|linebreaks }}</div>
+                </div>
+              {% endif %}
+              {% if step.mark_focus %}
+                <p class="mark-focus">{% trans "Mark earned" %}: {{ step.mark_focus }}</p>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="model-answer mt-4">
+        <h3 class="h5">{% trans "Expected answer" %}</h3>
+        <p>{{ question.expected_answer }}</p>
+        {% if question.examiner_note %}
+          <p class="text-secondary">{{ question.examiner_note }}</p>
+        {% endif %}
+      </div>
+    </section>
+  {% else %}
+    <form method="post" class="exam-panel">
+      {% csrf_token %}
+      <div class="mb-3">{{ form.answer_text.label_tag }}{{ form.answer_text }}</div>
+      <button class="btn btn-primary" type="submit">{% trans "Submit and auto-mark" %}</button>
+    </form>
+  {% endif %}
+</div>
+{% endblock %}

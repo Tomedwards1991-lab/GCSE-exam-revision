@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Practice Questions" %}{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+    <div>
+      <h1 class="h2 mb-1">{% trans "Practice questions" %}</h1>
+      <p class="text-secondary mb-0">{% trans "Pick a paper question, answer it, then use the model-answer builder to improve." %}</p>
+    </div>
+    <a class="btn btn-outline-primary" href="{% url 'generate_question' %}">{% trans "Generate a question" %}</a>
+  </div>
+  <form method="get" class="filter-row mb-4">
+    <select name="topic" class="form-select">
+      <option value="">{% trans "All topics" %}</option>
+      {% for topic in topics %}
+        <option value="{{ topic.slug }}" {% if selected_topic == topic.slug %}selected{% endif %}>{{ topic.name_en }}</option>
+      {% endfor %}
+    </select>
+    <select name="source" class="form-select">
+      <option value="">{% trans "All sources" %}</option>
+      <option value="past_paper" {% if selected_source == "past_paper" %}selected{% endif %}>{% trans "Past paper" %}</option>
+      <option value="generated" {% if selected_source == "generated" %}selected{% endif %}>{% trans "Generated" %}</option>
+    </select>
+    <button class="btn btn-primary" type="submit">{% trans "Filter" %}</button>
+  </form>
+  <div class="question-grid">
+    {% for question in questions %}
+      <article class="question-card">
+        <div class="d-flex justify-content-between gap-3">
+          <span class="badge text-bg-light">{{ question.get_source_display }}</span>
+          <span class="fw-semibold">{{ question.marks }} {% trans "marks" %}</span>
+        </div>
+        <h2 class="h5 mt-3">{{ question.reference|default:"Practice question" }}</h2>
+        <p>{{ question.prompt|truncatewords:34 }}</p>
+        <div class="topic-list">
+          {% for topic in question.topics.all %}
+            <span>{{ topic.name_en }}</span>
+          {% endfor %}
+        </div>
+        <a class="stretched-link" href="{{ question.get_absolute_url }}">{% trans "Open question" %}</a>
+      </article>
+    {% empty %}
+      <div class="empty-state">{% trans "No questions match those filters." %}</div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

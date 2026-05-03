@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ question.reference|default:"Question" }}{% endblock %}
+{% block content %}
+<div class="container py-4 narrow">
+  <div class="mb-3">
+    <a href="{% url 'question_list' %}" class="text-decoration-none">&larr; {% trans "All questions" %}</a>
+  </div>
+  <article class="exam-panel">
+    <div class="d-flex justify-content-between">
+      <span class="badge text-bg-light">{{ question.get_source_display }}</span>
+      <strong>{{ question.marks }} {% trans "marks" %}</strong>
+    </div>
+    <h1 class="h3 mt-3">{{ question.reference|default:"Practice question" }}</h1>
+    <p class="question-prompt">{{ question.prompt }}</p>
+    {% if question.paper %}
+      <p class="text-secondary mb-0">{{ question.paper.series }} {{ question.paper.code }}</p>
+    {% endif %}
+  </article>
+  <div class="mt-3 d-flex gap-2">
+    <a class="btn btn-primary" href="{% url 'attempt_question' question.pk %}">{% trans "Answer this question" %}</a>
+    <a class="btn btn-outline-secondary" href="{% url 'generate_question' %}">{% trans "Generate similar" %}</a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ student.get_full_name|default:student.username }}{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <div class="mb-3">
+    <a href="{% url 'dashboard' %}" class="text-decoration-none">&larr; {% trans "Dashboard" %}</a>
+  </div>
+  <div class="d-flex flex-wrap justify-content-between gap-3 mb-4">
+    <div>
+      <h1 class="h2 mb-1">{{ student.get_full_name|default:student.username }}</h1>
+      <p class="text-secondary mb-0">{{ student.email|default:"No email" }}</p>
+    </div>
+  </div>
+  <div class="metric-row mb-4">
+    <div><span>{% trans "Attempts" %}</span><strong>{{ attempt_total }}</strong></div>
+    <div><span>{% trans "Self-assessed marks" %}</span><strong>{{ marks_awarded }}/{{ marks_available }}</strong></div>
+  </div>
+  <section class="exam-panel mb-4">
+    <h2 class="h4">{% trans "Generated improvement feedback" %}</h2>
+    <p class="mb-0">{{ feedback }}</p>
+  </section>
+  <div class="row g-4">
+    <section class="col-lg-7">
+      <h2 class="h5">{% trans "Attempts" %}</h2>
+      <div class="list-group">
+        {% for attempt in attempts %}
+          <a class="list-group-item list-group-item-action" href="{% url 'attempt_question' attempt.question.pk %}?attempt={{ attempt.pk }}">
+            <div class="d-flex justify-content-between gap-3">
+              <span>{{ attempt.question.reference|default:attempt.question }}</span>
+              <span>{{ attempt.auto_awarded_marks }}/{{ attempt.question.marks }}</span>
+            </div>
+            <small class="text-secondary">{{ attempt.created_at }}</small>
+          </a>
+        {% empty %}
+          <div class="empty-state">{% trans "No attempts yet." %}</div>
+        {% endfor %}
+      </div>
+    </section>
+    <aside class="col-lg-5">
+      <h2 class="h5">{% trans "Topic metrics" %}</h2>
+      <div class="list-group">
+        {% for topic in topic_metrics %}
+          <div class="list-group-item">
+            <div class="d-flex justify-content-between gap-3">
+              <span>{{ topic.name_en }}</span>
+              <span>{{ topic.attempt_total }} {% trans "attempts" %}</span>
+            </div>
+            <small class="text-secondary">{{ topic.marks_awarded|default:0 }}/{{ topic.marks_available|default:0 }} {% trans "marks" %}</small>
+          </div>
+        {% empty %}
+          <div class="empty-state">{% trans "No topic data yet." %}</div>
+        {% endfor %}
+      </div>
+    </aside>
+  </div>
+</div>
+{% endblock %}

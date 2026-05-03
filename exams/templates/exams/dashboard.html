@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Dashboard" %}{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <div class="d-flex align-items-center justify-content-between mb-4">
+    <h1 class="h2 mb-0">{% trans "Dashboard" %}</h1>
+    <a class="btn btn-primary" href="{% url 'question_list' %}">{% trans "Practise" %}</a>
+  </div>
+  <div class="row g-4">
+    <section class="col-lg-7">
+      <h2 class="h5">{% trans "Recent attempts" %}</h2>
+      <div class="list-group">
+        {% for attempt in attempts %}
+          <a class="list-group-item list-group-item-action" href="{% url 'attempt_question' attempt.question.pk %}?attempt={{ attempt.pk }}">
+            <div class="d-flex justify-content-between">
+              <span>{{ attempt.question.reference|default:attempt.question }}</span>
+              <span>{{ attempt.auto_awarded_marks }}/{{ attempt.question.marks }}</span>
+            </div>
+            <small class="text-secondary">{{ attempt.created_at }}</small>
+          </a>
+        {% empty %}
+          <div class="empty-state">{% trans "No attempts yet." %}</div>
+        {% endfor %}
+      </div>
+    </section>
+    <aside class="col-lg-5">
+      <h2 class="h5">{% trans "Topic coverage" %}</h2>
+      <div class="list-group mb-4">
+        {% for topic in topics %}
+          <a class="list-group-item d-flex justify-content-between" href="{% url 'question_list' %}?topic={{ topic.slug }}">
+            <span>{{ topic.name_en }}</span><span>{{ topic.question_total }}</span>
+          </a>
+        {% empty %}
+          <div class="empty-state">{% trans "No topics yet." %}</div>
+        {% endfor %}
+      </div>
+      <h2 class="h5">{% trans "Papers" %}</h2>
+      <div class="list-group">
+        {% for paper in papers %}
+          <div class="list-group-item d-flex justify-content-between">
+            <span>{{ paper.series }} {{ paper.code }}</span><span>{{ paper.question_total }}</span>
+          </div>
+        {% endfor %}
+      </div>
+    </aside>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">HTML question pattern</title>
+  <desc id="desc">A diagram showing how a WJEC draft web page maps to HTML tags.</desc>
+  <rect width="960" height="420" fill="#f7f9fb"/>
+  <rect x="44" y="42" width="370" height="336" rx="8" fill="#ffffff" stroke="#dce3eb" stroke-width="3"/>
+  <rect x="44" y="42" width="370" height="42" rx="8" fill="#e9f2ff"/>
+  <text x="66" y="69" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#172033">Draft page</text>
+  <rect x="78" y="112" width="256" height="30" rx="4" fill="#2454a6"/>
+  <text x="92" y="134" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">Main heading</text>
+  <rect x="78" y="166" width="120" height="86" rx="6" fill="#dff3ed" stroke="#1d7a6f" stroke-width="2"/>
+  <circle cx="118" cy="196" r="18" fill="#1d7a6f" opacity=".35"/>
+  <path d="M88 238l42-34 22 20 24-30 16 44z" fill="#1d7a6f" opacity=".55"/>
+  <rect x="220" y="166" width="150" height="18" rx="4" fill="#dce3eb"/>
+  <rect x="220" y="195" width="132" height="18" rx="4" fill="#dce3eb"/>
+  <rect x="78" y="280" width="292" height="18" rx="4" fill="#dce3eb"/>
+  <rect x="78" y="310" width="172" height="22" rx="4" fill="#cfe0ff"/>
+  <text x="92" y="327" font-family="Arial, sans-serif" font-size="14" fill="#16376e">link to page</text>
+  <path d="M430 130h88" stroke="#657086" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M430 206h88" stroke="#657086" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M430 300h88" stroke="#657086" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="546" y="68" width="350" height="284" rx="8" fill="#172033"/>
+  <text x="574" y="106" font-family="Menlo, Consolas, monospace" font-size="18" fill="#cfe0ff">&lt;html&gt;</text>
+  <text x="594" y="136" font-family="Menlo, Consolas, monospace" font-size="18" fill="#dff3ed">&lt;head&gt;&lt;title&gt;...&lt;/title&gt;&lt;/head&gt;</text>
+  <text x="594" y="166" font-family="Menlo, Consolas, monospace" font-size="18" fill="#dff3ed">&lt;body&gt;</text>
+  <text x="618" y="196" font-family="Menlo, Consolas, monospace" font-size="18" fill="#ffffff">&lt;h1&gt;Main heading&lt;/h1&gt;</text>
+  <text x="618" y="226" font-family="Menlo, Consolas, monospace" font-size="18" fill="#ffffff">&lt;img src="pets.jpg"&gt;</text>
+  <text x="618" y="256" font-family="Menlo, Consolas, monospace" font-size="18" fill="#ffffff">&lt;p&gt;Paragraph text&lt;/p&gt;</text>
+  <text x="618" y="286" font-family="Menlo, Consolas, monospace" font-size="18" fill="#ffffff">&lt;a href="page2.html"&gt;Link&lt;/a&gt;</text>
+  <text x="594" y="316" font-family="Menlo, Consolas, monospace" font-size="18" fill="#dff3ed">&lt;/body&gt;</text>
+  <text x="574" y="346" font-family="Menlo, Consolas, monospace" font-size="18" fill="#cfe0ff">&lt;/html&gt;</text>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0 0 L8 3 L0 6 Z" fill="#657086"/>
+    </marker>
+  </defs>
+</svg>

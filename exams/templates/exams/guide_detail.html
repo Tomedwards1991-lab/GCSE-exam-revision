@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{{ article.title }}{% endblock %}
+{% block content %}
+<div class="container py-4 narrow">
+  <a href="{% url 'guide_list' %}" class="text-decoration-none">&larr; {% trans "All guides" %}</a>
+  <article class="guide-article mt-3">
+    <h1>{{ article.title }}</h1>
+    {% if article.slug == "wjec-html-questions" %}
+      <img class="guide-illustration" src="{% static 'img/guides/html-pattern.svg' %}" alt="{% trans 'HTML page structure illustration' %}">
+    {% elif article.slug == "wjec-greenfoot-questions" %}
+      <img class="guide-illustration" src="{% static 'img/guides/greenfoot-pattern.svg' %}" alt="{% trans 'Greenfoot world and actor checklist illustration' %}">
+    {% elif article.slug == "answering-mark-questions" %}
+      <img class="guide-illustration" src="{% static 'img/guides/marks-pattern.svg' %}" alt="{% trans 'Marks to answer checklist illustration' %}">
+    {% elif article.slug == "command-words" %}
+      <img class="guide-illustration" src="{% static 'img/guides/command-words.svg' %}" alt="{% trans 'Command words illustration' %}">
+    {% elif article.slug == "greenfoot-story-language" %}
+      <img class="guide-illustration" src="{% static 'img/guides/story-language.svg' %}" alt="{% trans 'Greenfoot story language illustration' %}">
+    {% elif article.slug == "model-answer-builder" %}
+      <img class="guide-illustration" src="{% static 'img/guides/model-answer-builder.svg' %}" alt="{% trans 'Model answer builder illustration' %}">
+    {% endif %}
+    <div>{{ article.body|linebreaks }}</div>
+  </article>
+</div>
+{% endblock %}

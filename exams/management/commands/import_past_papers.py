@@ -55,6 +55,7 @@ class Command(BaseCommand):
                 reference=item["reference"],
                 defaults={
                     "source": "past_paper",
+                    "pattern": item["pattern"],
                     "prompt_en": item["prompt"],
                     "marks": item["marks"],
                     "expected_answer_en": item["answer"],

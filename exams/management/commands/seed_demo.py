@@ -61,6 +61,7 @@ class Command(BaseCommand):
         samples = [
             {
                 "reference": "S24 Q1",
+                "pattern": "html_tags",
                 "topics": ["HTML"],
                 "marks": 5,
                 "prompt_en": "State the effect of five HTML tags commonly used in WJEC Unit 2 web-page questions: <html>, <head>, <title>, <body>, and <a>.",
@@ -75,6 +76,7 @@ class Command(BaseCommand):
             },
             {
                 "reference": "S24 Q2",
+                "pattern": "html_draft",
                 "topics": ["HTML"],
                 "marks": 10,
                 "prompt_en": "A draft web page for a local event contains a page title, a large heading, an image, two paragraphs and a link to a second page. Write the HTML tags needed to create the structure and content shown in the draft.",
@@ -89,6 +91,7 @@ class Command(BaseCommand):
             },
             {
                 "reference": "S24 Q6 pattern",
+                "pattern": "greenfoot_create",
                 "topics": ["Greenfoot", "Greenfoot world setup"],
                 "marks": 5,
                 "prompt_en": "A business would like a new Greenfoot advert scenario. Create a new World class called Advert with a 9 x 9 grid background, create an Actor subclass with the requested image, populate the world with two instances, make them move randomly, and save the world using the required final name.",
@@ -105,6 +108,7 @@ class Command(BaseCommand):
             },
             {
                 "reference": "S24 Q7 pattern",
+                "pattern": "greenfoot_complete",
                 "topics": ["Greenfoot", "Greenfoot collision and scoring"],
                 "marks": 13,
                 "prompt_en": "Open an existing Greenfoot world. Populate it with one player object and several moving objects, make the non-player objects move randomly, move the player with the arrow keys, remove a collectible on collision, play a sound on collision, add a counter, and save the completed world.",
@@ -127,6 +131,7 @@ class Command(BaseCommand):
                 paper=paper,
                 reference=sample["reference"],
                 defaults={
+                    "pattern": sample["pattern"],
                     "prompt_en": sample["prompt_en"],
                     "prompt_cy": sample["prompt_cy"],
                     "marks": sample["marks"],

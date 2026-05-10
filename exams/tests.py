@@ -39,6 +39,33 @@ class PracticeFlowTests(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertIn("/accounts/login/", response["Location"])
 
+    def test_generate_prefills_from_get(self):
+        self.client.login(username="learner", password="pass12345")
+        url = reverse("generate_question") + "?pattern=html_tags&topic=pets&marks=6&difficulty=stretch"
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        # Check if form initial values are set correctly
+        form = response.context["form"]
+        self.assertEqual(form.initial["pattern"], "html_tags")
+        self.assertEqual(form.initial["topic"], "pets")
+        self.assertEqual(form.initial["marks"], "6")
+        self.assertEqual(form.initial["difficulty"], "stretch")
+
+    def test_question_detail_has_generate_similar_link(self):
+        self.client.login(username="learner", password="pass12345")
+        from .models import Topic
+        topic = Topic.objects.create(unit=self.question.unit, name_en="Validation")
+        self.question.topics.add(topic)
+        self.question.pattern = "html_tags"
+        self.question.marks = 5
+        self.question.difficulty = "standard"
+        self.question.save()
+
+        response = self.client.get(reverse("question_detail", kwargs={"pk": self.question.pk}))
+        self.assertEqual(response.status_code, 200)
+        expected_url = f"{reverse('generate_question')}?pattern=html_tags&topic=Validation&marks=5&difficulty=standard"
+        self.assertContains(response, expected_url)
+
 
 class RoleDashboardTests(TestCase):
     def setUp(self):

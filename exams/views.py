@@ -207,6 +207,18 @@ class GenerateQuestionView(LoginRequiredMixin, FormView):
     template_name = "exams/generate_question.html"
     form_class = GenerateQuestionForm
 
+    def get_initial(self):
+        initial = super().get_initial()
+        if "pattern" in self.request.GET:
+            initial["pattern"] = self.request.GET.get("pattern")
+        if "topic" in self.request.GET:
+            initial["topic"] = self.request.GET.get("topic")
+        if "marks" in self.request.GET:
+            initial["marks"] = self.request.GET.get("marks")
+        if "difficulty" in self.request.GET:
+            initial["difficulty"] = self.request.GET.get("difficulty")
+        return initial
+
     def form_valid(self, form):
         unit = get_object_or_404(SpecificationUnit, code="3500U20-1")
         draft = get_question_generator().generate(**form.cleaned_data)
@@ -218,6 +230,7 @@ class GenerateQuestionView(LoginRequiredMixin, FormView):
         question = Question.objects.create(
             unit=unit,
             source="generated",
+            pattern=form.cleaned_data["pattern"],
             prompt_en=draft.prompt_en,
             expected_answer_en=draft.expected_answer_en,
             marks=draft.marks,

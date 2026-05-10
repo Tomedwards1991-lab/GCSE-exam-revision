@@ -143,6 +143,7 @@ class Question(TimestampedModel):
     expected_answer_cy = models.TextField(blank=True)
     examiner_note_en = models.TextField(blank=True)
     examiner_note_cy = models.TextField(blank=True)
+    pattern = models.CharField(max_length=40, blank=True)
     difficulty = models.CharField(max_length=24, choices=DIFFICULTY_CHOICES, default="standard")
     is_published = models.BooleanField(default=True)
 
